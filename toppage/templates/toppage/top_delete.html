@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}岩石試料データ削除{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand navbar-dark bg-success">
+    <ul class="navbar-nav">
+        <li class="nav-item"><h5 class="nav-link"  style="color:red">※以下のレコードを削除します</h5></li>
+        <li class="nav-item"><a href="{% url 'top'%}" class="nav-link"  style="color:red">トップ画面</a></li>
+    </ul>
+</nav>
+
+<div class="table-responsive">
+    <table class="table table-danger">
+        <tr><th>ID</th><td>{{obj.id}}</td></tr>
+        <tr><th>サンプル名</th><td>{{obj.sample_name}}</td></tr>
+        <tr><th>岩石名</th><td>{{obj.rock_type}}</td></tr>
+        <tr><th>重さ[グラム]</th><td>{{obj.weight}}</td></tr>
+        <tr><th>採集日</th><td>{{obj.sampling_date}}</td></tr>
+
+        <form action="{% url 'topdelete' id %}" method="post">
+        {% csrf_token %}
+        <tr><td></td><td align="left"><button type="submit" class="btn btn-dark btn-lg">削除</button></td></tr>
+        </form>
+    </table>
+</div>
+{% endblock %}

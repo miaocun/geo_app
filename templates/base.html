@@ -1,0 +1,67 @@
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% bootstrap_messages %}
+
+{% load static %}
+{% load staticfiles %}
+
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'startbootstrap-stylish-portfolio-gh-pages/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'startbootstrap-stylish-portfolio-gh-pages/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+ 
+    <link href="{% static 'startbootstrap-stylish-portfolio-gh-pages/vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'startbootstrap-stylish-portfolio-gh-pages/css/stylish-portfolio.min.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'geo_app/css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body style="background-color: rgb(206, 231, 191);">
+    <div class="container"  style="padding-top: 50px; ">
+
+        {% block content %}
+        {{ content }}
+        {% endblock %}
+    </div> 
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'startbootstrap-stylish-portfolio-gh-pages/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'startbootstrap-stylish-portfolio-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Plugin JavaScript -->
+<script src="{% static 'startbootstrap-stylish-portfolio-gh-pages/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{% static 'startbootstrap-stylish-portfolio-gh-pages/js/stylish-portfolio.min.js' %}"></script>
+
+
+
+{% block extra_js %}{% endblock %}	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

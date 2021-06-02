@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}プロジェクト削除{% endblock%}
+
+{% block content %}
+
+<nav class="navbar navbar-expand navbar-dark bg-success">
+    <ul class="navbar-nav">
+        <li class="nav-item"><h5 class="nav-link" style="color:red">※以下のレコードを削除します</h5></li>
+        <li class="nav-item"><a href="{% url 'mission'%}" class="nav-link" style="color:red">プロジェクトトップ画面</a></li>           
+    </ul>
+</nav>
+
+<div class="table-responsive">
+    <table class="table table-danger">
+        <tr><th>ID</th><td>{{obj.sample.id}}</td></tr>
+        <tr><th>タイプ</th><td>{{obj.type}}</td></tr>
+        <tr><th>プロジェクト名</th><td>{{obj.project}}</td></tr>
+        <tr><th>資金</th><td>{{obj.funding}}</td></tr>
+        <tr><th>関連論文</th><td>{{obj.publication}}</td></tr>
+
+        <tr><td></td><td align="left"><button type="submit" class="btn btn-dark btn-lg">削除</button></td></tr>
+
+    </table>
+</div>
+{% endblock %}
+

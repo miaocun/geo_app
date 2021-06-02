@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}地理情報詳細{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand navbar-dark bg-info">
+    <ul class="navbar-nav">
+        <li class="nav-item"><h5 class="nav-link" style="color:yellow">地理情報詳細</h5></li>
+        <li class="nav-item"><a href="{% url 'top'%}" class="nav-link" style="color:yellow">トップ画面へ戻る</a></li>             
+    </ul>
+</nav>
+
+<div class="table-responsive">
+    <table class="table table-warning table-bordered table-hover text-nowrap">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>産地国</th>
+                <th>地質帯</th>
+                <th>採集地</th>
+                <th>経度</th>
+                <th>緯度</th>
+                <th>写真</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+        <tr>    
+            <td>{{position.sample.id}}</td>
+            <td>{{position.country}}</td>
+            <td>{{position.terrane}}</td>
+            <td>{{position.locality}}</td>
+            <td>{% if position.N == True %} N {{position.lat}}{% endif %}
+                {% if position.N == False %} S {{position.lat}}{% endif %}</td>
+            <td>{% if position.E == True %} E {{position.lon}}{% endif %}
+                {% if position.E == false %} W {{position.lon}}{% endif %}</td>
+            <td>
+                <form  action="{% url 'photoupload' %}" method="post" enctype="multipart/form-data" input type="hidden" name="id" value="{{position.id}}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{position.id}}">　
+                    <p><input type="file" name="upfile"/>{{position.photo}}</p>
+                    <p><input type="submit" name="btn_upload" value="保存"/></p>
+                </form>
+            </td>
+            <td><a href="{% url 'locality_edit' position.id %}">Edit</a></td>
+            <td><a href="{% url 'locality_delete' position.id %}">Delete</a></td>
+        </tr>
+
+    </table>
+
+</div>
+
+<iframe src="http://maps.google.co.jp/maps?q={{position.lat}},{{position.lon}}&output=embed&t=m&z=16&hl=en" 
+        frameborder="0" 
+        scrolling="no" 
+        marginheight="0" 
+        marginwidth="0" 
+        width="600" 
+        height="450">
+</iframe>
+<p class="resizeimage">
+    <img src="{{position.photo.url}}" width="600">
+</p>
+　
+{% endblock %}

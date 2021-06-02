@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}地理情報削除{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand navbar-dark bg-success">
+    <ul class="navbar-nav">
+        <li class="nav-item"><h5 class="nav-link" style="color: red">※以下のレコードを削除します</h5></li>
+        <li class="nav-item"><a href="{% url 'locality'%}" class="nav-link" style="color:red">地理情報トップ画面</a></li>             
+    </ul>
+</nav>
+
+<div class="table-responsive">
+    <table class="table table-danger">
+        <tr><th>ID</th><td>{{obj.sample.id}}</td></tr>
+        <tr><th>産地国</th><td>{{obj.country}}</td></tr>
+        <tr><th>地質帯</th><td>{{obj.terrane}}</td></tr>
+        <tr><th>採集地</th><td>{{obj.locality}}</td></tr>
+        <tr><th>緯度</th><td>{{obj.N}}{{obj.lon}}</td></tr>
+        <tr><th>経度</th><td>{{obj.E}}{{obj.lat}}</td></tr>
+        <tr><th>写真</th><td>{{obj.photo}}</td></tr>
+        <tr><td></td><td align="left"><button type="submit" class="btn btn-dark btn-lg">削除</button></td></tr>
+
+    </table>
+</div>
+{% endblock %}

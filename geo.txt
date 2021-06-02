@@ -1,0 +1,6 @@
+django~=2.2.4
+Bootstrap4
+django-bootstrap-form
+django-fontawesome
+django-bootstrap4
+Pillow

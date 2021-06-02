@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}管理者詳細{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand navbar-dark bg-info">
+    <ul class="navbar-nav">
+        <li class="nav-item"><h5 class="nav-link" style="color:yellow">保管情報詳細</h5></li>
+        <li class="nav-item"><a href="{% url 'top'%}" class="nav-link" style="color:yellow">トップ画面</a></li>           
+    </ul>
+</nav>
+
+
+<div class="table-responsive">
+    <table class="table table-warning table-bordered table-hover text-nowrap">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>管理者</th>
+                <th>保管場所</th>
+                <th>天箱</th>
+                <th>薄片の有無</th>
+                <th>薄片箱の名称</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tr>    
+            <td>{{owner.sample.id}}</td>
+            <td>{{owner.name}}</td>
+            <td>{{owner.storage}}</td>
+            <td>{{owner.box_number}}</td>
+            <td>{% if owner.thin_section == True %} あり {% endif %}
+                {% if owner.thin_section == False %} なし {% endif %}</td>
+            <td>{{owner.thin_section_box}}</td>
+            <td><a href="{% url 'collector_edit' owner.id %}">Edit</a></td>
+            <td><a href="{% url 'collector_delete' owner.id %}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

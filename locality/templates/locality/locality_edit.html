@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}地理情報更新{% endblock %}
+
+{% block content %}
+{% load bootstrap %}
+
+<nav class="navbar navbar-expand navbar-dark bg-info">
+    <ul class="navbar-nav">
+        <li class="nav-item"><h5 class="nav-link" style="color:yellow">地理情報更新フォーム</h5></li>
+        <li class="nav-item"><a href="{% url 'locality'%}" class="nav-link" style="color:yellow">地理情報トップ画面</a></li>             
+    </ul>
+</nav>
+
+<div class="table-responsive">
+    <table class="table text-nowrap">
+        <form action="{% url 'locality_edit' id %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <tr><td></td><td align="left"><button type="submit" class="btn btn-primary btn-lg">更新</button></td></tr>
+        </form>
+    </table>
+</div>
+{% endblock %}

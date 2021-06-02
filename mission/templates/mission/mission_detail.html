@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}プロジェクト詳細{% endblock%}
+
+{% block content %}
+
+<nav class="navbar navbar-expand navbar-dark bg-info">
+    <ul class="navbar-nav">
+        <li class="nav-item"><h5 class="nav-link" style="color:yellow">プロジェクト詳細</h5></li>
+        <li class="nav-item"><a href="{% url 'top'%}" class="nav-link" style="color:yellow">トップ画面</a></li>             
+    </ul>
+</nav>
+
+<div class="table-responsive">
+    <table class="table table-warning table-bordered table-hover text-nowrap">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>タイプ</th>
+                <th>プロジェクト名</th>
+                <th>資金</th>
+                <th>関連論文</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tr>    
+            <td>{{mission.sample.id}}</td>
+            <td>{% if mission.type == True %} 研究 {% endif %}
+                {% if mission.type == False %} 教育 {% endif %}</td>
+            <td>{{mission.project}}</td>
+            <td>{{mission.funding}}</td>
+            <td>{{mission.publication}}</td>
+            <td><a href="{% url 'mission_edit' mission.id %}">Edit</a></td>
+            <td><a href="{% url 'mission_delete' mission.id %}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

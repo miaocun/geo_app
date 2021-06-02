@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}プロジェクトトップ画面{% endblock%}
+
+
+{% block content%}
+
+<nav class="navbar navbar-expand navbar-dark bg-info">
+    <ul class="navbar-nav">
+        <li class="nav-item"><h5 class="nav-link" style="color:yellow">プロジェクトトップ画面</h5></li>
+        <li class="nav-item"><a href="{% url 'top'%}" class="nav-link" style="color:yellow">トップ画面</a></li>
+        <li class="nav-item"><a href="{% url 'mission_create'%}" class="nav-link" style="color:yellow">新規データ追加</a></li>  
+        <li class="nav-item"><a href="{% url 'mission_find'%}" class="nav-link" style="color:yellow">検索</a></li>              
+    </ul>
+</nav>
+
+<div class="table-responsive">
+    <table class="table table-warning table-bordered table-hover text-nowrap">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>タイプ</th>
+                <th>プロジェクト名</th>
+                <th>資金</th>
+                <th>関連論文</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+    {% for mission in missions %}
+        <tr>    
+            <td>{{mission.sample.id}}</td>
+            <td>{% if mission.type == True %} 研究 {% endif %}
+                {% if mission.type == False %} 教育 {% endif %}</td>
+            <td>{{mission.project}}</td>
+            <td>{{mission.funding}}</td>
+            <td>{{mission.publication}}</td>
+            <td><a href="{% url 'mission_edit' mission.id %}">Edit</a></td>
+            <td><a href="{% url 'mission_delete' mission.id %}">Delete</a></td>
+        </tr>
+    {% endfor %}
+
+    </table>
+</div>
+
+
+{% if missions.has_previous %}
+<a href="?page={{ missions.previous_page_number }}">&lt; 前のページ</a>
+{% else %}
+<span>&lt; 前のページ</span>
+{% endif %}
+
+{{ missions.number }}ページ
+
+{% if missions.has_next %}
+<a href="?page={{ missions.next_page_number }}">次のページ &gt;</a>
+{% else %}
+<span>次のページ &gt;</span>
+{% endif %}
+
+{% endblock %}
+
+
